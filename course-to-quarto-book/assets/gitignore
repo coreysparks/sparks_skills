@@ -1,0 +1,15 @@
+# R / RStudio
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+Rplots.pdf
+
+# Quarto (docs/ is built by GitHub Actions; _freeze/ IS committed)
+/.quarto/
+/docs/
+*_files/
+*.html
+
+# OS
+.DS_Store

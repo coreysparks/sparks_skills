@@ -1,0 +1,66 @@
+# Before the First Class {.unnumbered}
+
+This page walks you through getting your computer ready for the course. Plan on 20–30 minutes, most of which is waiting for things to download. Please do this *before* our first meeting, so we can spend class time on statistics instead of installation troubleshooting.
+
+## Step 1: Install R
+
+R is the program that does the computing. Download it from the Comprehensive R Archive Network, [CRAN](https://cran.r-project.org):
+
+- **Windows:** click "Download R for Windows," then "base," then the download link at the top of the page. Run the installer and accept the defaults.
+- **macOS:** click "Download R for macOS" and choose the installer that matches your Mac. Newer Macs with Apple silicon (M1 and later) use the `arm64` version; older Intel Macs use the `x86_64` version. If you aren't sure, click the Apple menu and choose "About This Mac."
+- **Linux:** follow the instructions for your distribution on the CRAN page.
+
+If you already have R installed, make sure it's reasonably recent (version 4.1 or newer). When in doubt, install the newest version.
+
+## Step 2: Install RStudio
+
+RStudio is the program you'll actually work in. It's an editor that makes using R much friendlier. Download the free RStudio Desktop from [Posit](https://posit.co/download/rstudio-desktop/) and install it with the default settings. RStudio includes Quarto, so you'll be able to open and run the `.qmd` files for this course.
+
+Once it's installed, open **RStudio** (not R). You should see a window with a pane labeled *Console* on the left. That's where you'll type the command in the next step.
+
+## Step 3: Install the course packages
+
+R packages add functions for particular tasks. This course uses a set of packages for reading data, making graphs, and fitting models. I've written a script that installs everything for you. Copy this line, paste it into the RStudio **Console**, and press Enter:
+
+```{r}
+#| label: install-script
+#| eval: false
+source("https://raw.githubusercontent.com/{{GITHUB_USER}}/{{REPO}}/{{DEFAULT_BRANCH}}/install_packages.R")
+```
+
+The script checks your version of R, installs any course packages you don't already have, makes sure each one loads, and checks that you can download the course data. You'll see progress messages as it works. When it finishes, you should see:
+
+```
+All done! You're ready for {{COURSE_CODE}}.
+```
+
+It's safe to run the script more than once. If something goes wrong partway through, just run it again, and it will pick up where it left off.
+
+::: {.callout-tip}
+## If RStudio asks a question during installation
+- If you're asked whether to install from sources the packages that need compilation, answer **no**. The pre-built versions work fine and install much faster.
+- If you're asked whether to use a personal library, answer **yes**.
+- If you're asked to update existing packages, answering **none** (or `n`) is fine for now.
+:::
+
+## Step 4: Make a folder for the class
+
+Make a folder on your computer to hold everything for this course. Better yet, make it an RStudio *project*: in RStudio, choose **File > New Project > New Directory > New Project**, name it something like `{{REPO}}`, and pick where to save it. Whenever you work on course material, open the project first, so R knows where your files are.
+
+## Troubleshooting
+
+**A package fails to install.** Read the message the script prints, then try installing that package by itself, for example `install.packages("car")`. On a Mac, if the error mentions "clang," "gfortran," or "compilation failed," you've probably been offered a source package. Run the script again and answer **no** when asked about compiling from source.
+
+**The data download fails.** Check your internet connection. If you're on a campus or corporate network, a firewall may be blocking GitHub. Try again from a different network.
+
+**Something else.** Copy the full error message and bring it to class or office hours, or send it to me by email. Error messages look scary, but they usually tell you exactly what went wrong.
+
+## What gets installed
+
+For reference, here is everything the script installs:
+
+| Package | What we use it for |
+|---|---|
+| `tidyverse` | Reading data (`readr`), data management (`dplyr`, `tidyr`), and graphics (`ggplot2`) |
+{{PACKAGE_TABLE_ROWS}}
+| `knitr`, `rmarkdown` | Rendering Quarto and R Markdown documents |

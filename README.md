@@ -37,6 +37,15 @@ Tracks academic manuscripts across the full submission lifecycle (in-prep → su
 
 ---
 
+### 🎓 course-to-quarto-book
+Converts an old course repository of R Markdown handouts into an edited, verified Quarto book published to GitHub Pages with GitHub Actions. Audits the source files (deprecated code, local paths, dead or Git LFS data links, hard-coded results), restructures them into book chapters, corrects formulas and code against a checklist of common errors, replaces hard-coded numbers with inline R, checks every interpretive claim against the rendered output, adds further reading per chapter, and sets up a one-line student package installer and setup page. Built converting [DEM 7273](https://coreysparks.github.io/DEM7273/).
+
+**Key tools:** Quarto, R, `gh`, GitHub Actions
+**Bundled:** `scripts/audit_course.py`, `scripts/rendered_text.sh`, a content review checklist, and templates for `_quarto.yml`, the Pages workflow, `install_packages.R`, `setup.qmd`, and the UTSA theme
+**Output:** Quarto book in the course repo, published at `https://<user>.github.io/<repo>/`
+
+---
+
 ## Installation
 
 To use these skills in your own Hermes Agent session, copy any `SKILL.md` into your skills directory:
@@ -45,6 +54,12 @@ To use these skills in your own Hermes Agent session, copy any `SKILL.md` into y
 # Example: install dhs-data-pipeline
 mkdir -p ~/.hermes/skills/research/dhs-data-pipeline
 cp dhs-data-pipeline/SKILL.md ~/.hermes/skills/research/dhs-data-pipeline/SKILL.md
+```
+
+Skills with bundled `scripts/`, `references/`, or `assets/` folders (such as `course-to-quarto-book`) need the whole folder copied, not just `SKILL.md`:
+
+```bash
+cp -r course-to-quarto-book ~/.hermes/skills/teaching/
 ```
 
 Then reload skills in a new Hermes session.

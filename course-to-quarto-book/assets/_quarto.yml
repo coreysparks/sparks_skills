@@ -1,0 +1,47 @@
+# Template: replace every {{PLACEHOLDER}} and build the chapter list from the
+# actual chapter files. Group chapters into parts by topic.
+project:
+  type: book
+  output-dir: docs
+  execute-dir: project   # code runs from the project root, so paths like "data/x.csv" work
+
+book:
+  title: "{{COURSE_TITLE}}"
+  subtitle: "Course notes and R code for {{COURSE_CODE}}"
+  author: "{{AUTHOR}}"
+  date: last-modified
+  repo-url: https://github.com/{{GITHUB_USER}}/{{REPO}}
+  repo-actions: [source, issue]
+  search: true
+  chapters:
+    - index.qmd
+    - setup.qmd
+    - part: "{{PART_1_TITLE}}"
+      chapters:
+        - chapters/01-{{slug}}.qmd
+        - chapters/02-{{slug}}.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - utsa.scss
+    toc: true
+    toc-depth: 3
+    code-link: true
+    code-copy: true
+    code-overflow: wrap
+    fig-width: 7
+    fig-height: 5
+    fig-align: center
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: false
