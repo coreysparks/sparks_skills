@@ -22,17 +22,14 @@ $callout-color-note: $utsa-talavera;
 $callout-color-warning: $utsa-orange;
 
 /*-- scss:rules --*/
-h1.title, .chapter-title {
+// orange rule under the page title only (not the sidebar chapter list)
+#title-block-header h1.title {
   border-bottom: 3px solid $utsa-orange;
   padding-bottom: 0.25rem;
 }
 
 .sidebar-title {
   color: $utsa-midnight;
-}
-
-.sidebar-item-section .sidebar-item-text {
-  font-weight: 600;
 }
 
 div.sourceCode {
